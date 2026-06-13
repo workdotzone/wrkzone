@@ -23,11 +23,11 @@ export default async function AdsPage({
   const where: Prisma.AdWhereInput = { status: "APPROVED" };
   if (sp.q) {
     where.OR = [
-      { title: { contains: sp.q } },
-      { description: { contains: sp.q } },
+      { title: { contains: sp.q, mode: "insensitive" } },
+      { description: { contains: sp.q, mode: "insensitive" } },
     ];
   }
-  if (sp.city) where.city = { contains: sp.city };
+  if (sp.city) where.city = { contains: sp.city, mode: "insensitive" };
   if (sp.category) where.category = { slug: sp.category };
 
   let orderBy: Prisma.AdOrderByWithRelationInput | Prisma.AdOrderByWithRelationInput[] =
