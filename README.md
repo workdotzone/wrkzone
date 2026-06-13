@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌅 WrkZone
 
-## Getting Started
+A creative, cheerful **classified ads marketplace** where handymen — plumbers,
+AC technicians, pest control, cleaners, electricians and more — post their
+services and get hired by local customers.
 
-First, run the development server:
+Built with a warm **"happy morning" sunrise palette** (amber / peach /
+sunny-yellow with sky-blue accents).
+
+## ✨ Features
+
+- **Home page** — animated hero, category grid, fresh listings, banner ads, "how it works", CTA
+- **Post an ad** — guarded form with category picker, pricing, location, contact & **local image upload**
+- **Browse & search** — full-text search, city filter, category chips, sorting (newest / price / popularity)
+- **Ad detail** — image, description, reviews, call / WhatsApp / email contact, related ads, view counter
+- **Category pages** — one landing page per service
+- **Auth** — email + password (NextAuth credentials) with `USER` / `ADMIN` roles
+- **User dashboard** — stats (ads / live / views), manage & delete your ads, profile card
+- **Admin console** — overview stats, moderate ads (approve / reject / feature / delete), manage users (role / delete), manage categories, manage **banner advertisements**
+
+## 🧱 Stack
+
+| Layer     | Tech                                |
+| --------- | ----------------------------------- |
+| Framework | Next.js 16 (App Router) + React 19  |
+| Language  | TypeScript                          |
+| Styling   | Tailwind CSS v4                     |
+| Database  | SQLite via Prisma 6                 |
+| Auth      | NextAuth v4 (JWT, credentials)      |
+| Uploads   | Local filesystem (`/public/uploads`)|
+
+## 🚀 Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npx prisma migrate dev      # creates the SQLite db + tables
+npm run db:seed             # categories, sample ads, banners, demo users
+npm run dev                 # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Demo accounts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Role  | Email             | Password   |
+| ----- | ----------------- | ---------- |
+| Admin | admin@wrkzone.com | `admin123` |
+| User  | rahul@wrkzone.com | `user123`  |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📂 Project structure
 
-## Learn More
+```
+app/
+  page.tsx                 Home
+  ads/                     Listing + [id] detail
+  category/[slug]/         Category landing
+  post/                    Post-ad form (auth required)
+  dashboard/               User dashboard
+  login/  register/        Auth pages
+  about/                   How it works
+  admin/                   Admin console (ADMIN only)
+  api/                     register, ads, upload, auth, admin/*
+components/                Navbar, Footer, AdCard, SearchBar, forms, admin/*
+lib/                       prisma.ts, auth.ts, utils.ts
+prisma/                    schema.prisma, seed.ts, migrations
+public/uploads/            Uploaded ad images
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🔧 Useful scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run dev        # dev server
+npm run build      # production build
+npm run db:seed    # re-seed sample data
+npm run db:reset   # wipe + re-migrate + re-seed
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔐 Notes for production
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Change `NEXTAUTH_SECRET` in `.env` to a strong random value.
+- Swap SQLite for Postgres by editing `datasource` in `prisma/schema.prisma`.
+- For real image hosting, move uploads to S3 / Cloudinary.

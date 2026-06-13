@@ -1,65 +1,239 @@
-import Image from "next/image";
+import Link from "next/link";
+import { prisma } from "@/lib/prisma";
+import SearchBar from "@/components/SearchBar";
+import AdCard from "@/components/AdCard";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const [categories, featured, banners, stats] = await Promise.all([
+    prisma.category.findMany({
+      include: { _count: { select: { ads: { where: { status: "APPROVED" } } } } },
+      orderBy: { name: "asc" },
+    }),
+    prisma.ad.findMany({
+      where: { status: "APPROVED" },
+      include: { category: true },
+      orderBy: [{ featured: "desc" }, { createdAt: "desc" }],
+      take: 8,
+    }),
+    prisma.advertisement.findMany({
+      where: { active: true, placement: "home" },
+      take: 1,
+    }),
+    Promise.all([
+      prisma.ad.count({ where: { status: "APPROVED" } }),
+      prisma.user.count(),
+      prisma.category.count(),
+    ]),
+  ]);
+
+  const [adCount, userCount, catCount] = stats;
+  const banner = banners[0];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div>
+      {/* ---------- HERO ---------- */}
+      <section className="relative overflow-hidden">
+        <div className="mx-auto max-w-7xl px-6 pb-16 pt-14 sm:pt-20">
+          <div className="grid items-center gap-10 lg:grid-cols-2">
+            <div className="animate-fade-up">
+              <span className="inline-flex items-center gap-2 rounded-full bg-peach-100 px-4 py-1.5 text-sm font-semibold text-sun-600 ring-1 ring-peach-200">
+                ☀️ Good morning! 5,000+ pros ready to help
+              </span>
+              <h1 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">
+                Find a trusted <span className="sunrise-text">handyman</span> in
+                minutes.
+              </h1>
+              <p className="mt-5 max-w-lg text-lg text-ink-soft">
+                Plumbers, AC technicians, pest control, cleaners, electricians &
+                more — post a job or get hired on WrkZone, your friendly local
+                classifieds.
+              </p>
+
+              <div className="mt-8 max-w-xl">
+                <SearchBar large />
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  href="/post"
+                  className="rounded-full sunrise-gradient px-6 py-3 text-sm font-bold text-white shadow-lg shadow-sun-500/30 hover:scale-[1.03] transition"
+                >
+                  Post your service free →
+                </Link>
+                <Link
+                  href="/ads"
+                  className="rounded-full bg-white px-6 py-3 text-sm font-bold ring-1 ring-peach-200 hover:ring-sun-400 transition"
+                >
+                  Browse all ads
+                </Link>
+              </div>
+
+              <div className="mt-10 flex gap-8">
+                <Stat value={`${adCount}+`} label="Active ads" />
+                <Stat value={`${userCount}+`} label="Members" />
+                <Stat value={`${catCount}`} label="Categories" />
+              </div>
+            </div>
+
+            {/* Hero art */}
+            <div className="relative hidden lg:block">
+              <div className="absolute inset-0 animate-float">
+                <div className="absolute right-10 top-0 flex h-28 w-28 items-center justify-center rounded-3xl sunrise-gradient text-5xl shadow-2xl shadow-sun-500/30">
+                  🔧
+                </div>
+              </div>
+              <div className="mx-auto grid max-w-md grid-cols-2 gap-4 pt-6">
+                {[
+                  { e: "❄️", t: "AC Repair", c: "#06b6d4" },
+                  { e: "🧹", t: "Cleaning", c: "#f59e0b" },
+                  { e: "💡", t: "Electrician", c: "#eab308" },
+                  { e: "🐜", t: "Pest Control", c: "#84cc16" },
+                ].map((x, i) => (
+                  <div
+                    key={x.t}
+                    className="card-lift rounded-3xl bg-white p-6 text-center shadow-lg ring-1 ring-peach-200"
+                    style={{ animationDelay: `${i * 80}ms` }}
+                  >
+                    <div
+                      className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl text-3xl"
+                      style={{ background: `${x.c}22` }}
+                    >
+                      {x.e}
+                    </div>
+                    <p className="mt-3 font-bold">{x.t}</p>
+                    <p className="text-xs text-ink-soft">Top rated pros</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- CATEGORIES ---------- */}
+      <section id="categories" className="mx-auto max-w-7xl px-6 py-12">
+        <SectionHeading
+          title="Browse by category"
+          subtitle="Pick a service and find the right pro near you"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+          {categories.map((c) => (
+            <Link
+              key={c.id}
+              href={`/category/${c.slug}`}
+              className="card-lift flex flex-col items-center gap-2 rounded-2xl bg-white p-5 text-center ring-1 ring-peach-200/80"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              <span
+                className="flex h-14 w-14 items-center justify-center rounded-2xl text-2xl"
+                style={{ background: `${c.color}1f` }}
+              >
+                {c.icon}
+              </span>
+              <span className="text-sm font-bold leading-tight">{c.name}</span>
+              <span className="text-xs text-ink-soft">{c._count.ads} ads</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* ---------- BANNER AD ---------- */}
+      {banner && (
+        <section className="mx-auto max-w-7xl px-6 py-4">
+          <Link href={banner.link || "#"} className="block overflow-hidden rounded-3xl shadow-lg">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={banner.image} alt={banner.title} className="w-full" />
+          </Link>
+        </section>
+      )}
+
+      {/* ---------- FEATURED ADS ---------- */}
+      <section className="mx-auto max-w-7xl px-6 py-12">
+        <div className="flex items-end justify-between">
+          <SectionHeading
+            title="Fresh listings"
+            subtitle="Recently posted services from verified members"
+          />
+          <Link
+            href="/ads"
+            className="hidden shrink-0 rounded-full bg-white px-5 py-2.5 text-sm font-bold ring-1 ring-peach-200 hover:ring-sun-400 sm:block"
+          >
+            View all →
+          </Link>
+        </div>
+        <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {featured.map((ad) => (
+            <AdCard key={ad.id} ad={ad} />
+          ))}
+        </div>
+        {featured.length === 0 && (
+          <p className="mt-8 text-center text-ink-soft">
+            No ads yet — be the first to{" "}
+            <Link href="/post" className="font-bold text-sun-600">post one</Link>!
           </p>
+        )}
+      </section>
+
+      {/* ---------- HOW IT WORKS ---------- */}
+      <section className="mx-auto max-w-7xl px-6 py-12">
+        <SectionHeading title="How WrkZone works" subtitle="Three simple steps" />
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
+          {[
+            { n: "1", e: "📝", t: "Post or search", d: "Create an account and post your service, or search for the help you need." },
+            { n: "2", e: "💬", t: "Connect directly", d: "Customers call or message you straight from your ad — no middleman fees." },
+            { n: "3", e: "⭐", t: "Get hired & reviewed", d: "Do great work, collect ratings, and grow your local reputation." },
+          ].map((s) => (
+            <div key={s.n} className="relative rounded-3xl bg-white p-7 ring-1 ring-peach-200 shadow-sm">
+              <span className="absolute -top-4 left-7 flex h-9 w-9 items-center justify-center rounded-full sunrise-gradient text-sm font-bold text-white shadow">
+                {s.n}
+              </span>
+              <div className="text-4xl">{s.e}</div>
+              <h3 className="mt-3 text-lg font-bold">{s.t}</h3>
+              <p className="mt-1 text-sm text-ink-soft">{s.d}</p>
+            </div>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      </section>
+
+      {/* ---------- CTA ---------- */}
+      <section className="mx-auto max-w-7xl px-6 py-12">
+        <div className="relative overflow-hidden rounded-3xl sunrise-gradient px-8 py-14 text-center text-white shadow-2xl shadow-sun-500/30">
+          <div className="absolute -right-10 -top-10 h-48 w-48 rounded-full bg-white/20" />
+          <div className="absolute -bottom-12 -left-8 h-40 w-40 rounded-full bg-white/10" />
+          <h2 className="relative text-3xl font-extrabold sm:text-4xl">
+            Ready to grow your business?
+          </h2>
+          <p className="relative mx-auto mt-3 max-w-xl text-white/90">
+            Join thousands of handymen getting hired every day. Posting your
+            first ad takes less than 2 minutes.
+          </p>
+          <Link
+            href="/post"
+            className="relative mt-7 inline-block rounded-full bg-white px-8 py-3.5 text-sm font-extrabold text-sun-600 shadow-lg hover:scale-[1.03] transition"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Post your free ad →
+          </Link>
         </div>
-      </main>
+      </section>
+    </div>
+  );
+}
+
+function Stat({ value, label }: { value: string; label: string }) {
+  return (
+    <div>
+      <div className="text-2xl font-extrabold sunrise-text">{value}</div>
+      <div className="text-sm text-ink-soft">{label}</div>
+    </div>
+  );
+}
+
+function SectionHeading({ title, subtitle }: { title: string; subtitle: string }) {
+  return (
+    <div>
+      <h2 className="text-2xl font-extrabold sm:text-3xl">{title}</h2>
+      <p className="mt-1 text-ink-soft">{subtitle}</p>
     </div>
   );
 }

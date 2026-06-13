@@ -1,0 +1,96 @@
+// WrkZone — Classified ads for handymen
+// Prisma schema (SQLite)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum AdStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  phone     String?
+  city      String?
+  role      Role     @default(USER)
+  avatar    String?
+  createdAt DateTime @default(now())
+
+  ads      Ad[]
+  reviews  Review[]
+}
+
+model Category {
+  id       String  @id @default(cuid())
+  name     String  @unique
+  slug     String  @unique
+  icon     String  // emoji icon
+  color    String  // tailwind-ish accent color (hex)
+  ads      Ad[]
+}
+
+model Ad {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  price       Float?
+  priceType   String   @default("Fixed") // Fixed, Hourly, Negotiable
+  city        String
+  area        String?
+  phone       String
+  email       String?
+  image       String?
+  status      AdStatus @default(PENDING)
+  featured    Boolean  @default(false)
+  views       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  reviews     Review[]
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  rating    Int      // 1-5
+  comment   String?
+  createdAt DateTime @default(now())
+
+  adId      String
+  ad        Ad       @relation(fields: [adId], references: [id], onDelete: Cascade)
+
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// Banner advertisements managed by admin (the "advertisement" module)
+model Advertisement {
+  id        String   @id @default(cuid())
+  title     String
+  image     String
+  link      String?
+  placement String   @default("home") // home, sidebar, listing
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
