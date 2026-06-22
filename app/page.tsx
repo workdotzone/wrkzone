@@ -2,6 +2,14 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import SearchBar from "@/components/SearchBar";
 import AdCard from "@/components/AdCard";
+import PopularServices from "@/components/PopularServices";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import Statistics from "@/components/Statistics";
+import Testimonials from "@/components/Testimonials";
+import Partners from "@/components/Partners";
+import ServiceCatalog from "@/components/ServiceCatalog";
+import FAQ from "@/components/FAQ";
+import AppPromotion from "@/components/AppPromotion";
 
 export const dynamic = "force-dynamic";
 
@@ -179,6 +187,21 @@ export default async function Home() {
         )}
       </section>
 
+      {/* ---------- POPULAR SERVICES ---------- */}
+      <PopularServices />
+
+      {/* ---------- STATISTICS ---------- */}
+      <Statistics />
+
+      {/* ---------- WHY CHOOSE US ---------- */}
+      <WhyChooseUs />
+
+      {/* ---------- TESTIMONIALS ---------- */}
+      <Testimonials />
+
+      {/* ---------- PARTNERS ---------- */}
+      <Partners />
+
       {/* ---------- HOW IT WORKS ---------- */}
       <section className="mx-auto max-w-7xl px-6 py-12">
         <SectionHeading title="How WrkZone works" subtitle="Three simple steps" />
@@ -199,6 +222,15 @@ export default async function Home() {
           ))}
         </div>
       </section>
+
+      {/* ---------- SERVICE CATALOG ---------- */}
+      <ServiceCatalog />
+
+      {/* ---------- FAQ ---------- */}
+      <FAQ />
+
+      {/* ---------- APP PROMOTION ---------- */}
+      <AppPromotion />
 
       {/* ---------- CTA ---------- */}
       <section className="mx-auto max-w-7xl px-6 py-12">
