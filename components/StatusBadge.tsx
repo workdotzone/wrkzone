@@ -1,8 +1,8 @@
 export default function StatusBadge({ status }: { status: string }) {
   const map: Record<string, { label: string; cls: string }> = {
-    APPROVED: { label: "Live", cls: "bg-green-500/15 text-green-600" },
-    PENDING: { label: "Pending review", cls: "bg-sun-400/20 text-sun-600" },
-    REJECTED: { label: "Rejected", cls: "bg-coral-500/15 text-coral-500" },
+    APPROVED: { label: "Live", cls: "bg-green-500/15 text-green-700" },
+    PENDING: { label: "Pending review", cls: "bg-warning/20 text-warning" },
+    REJECTED: { label: "Rejected", cls: "bg-error/15 text-error" },
   };
   const s = map[status] ?? map.PENDING;
   return (
