@@ -159,12 +159,6 @@ async function main() {
   // Banner advertisements
   const banners = [
     {
-      title: "Become a Verified Pro — Boost your bookings!",
-      image: "/banners/banner1.svg",
-      link: "/register",
-      placement: "home",
-    },
-    {
       title: "Monsoon Offer — 20% off on Pest Control",
       image: "/banners/banner2.svg",
       link: "/category/pest-control",
