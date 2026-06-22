@@ -5,7 +5,6 @@ import AdCard from "@/components/AdCard";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Testimonials from "@/components/Testimonials";
 import Partners from "@/components/Partners";
-import ServiceCatalog from "@/components/ServiceCatalog";
 import FAQ from "@/components/FAQ";
 import AppPromotion from "@/components/AppPromotion";
 import BrowseByCategory from "@/components/BrowseByCategory";
@@ -165,9 +164,6 @@ export default async function Home() {
           ))}
         </div>
       </section>
-
-      {/* ---------- SERVICE CATALOG ---------- */}
-      <ServiceCatalog />
 
       {/* ---------- FAQ ---------- */}
       <FAQ />
