@@ -85,49 +85,9 @@ export default async function Home() {
           </p>
 
           {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-10">
+          <div className="max-w-2xl mx-auto">
             <div className="drop-shadow-2xl">
               <SearchBar large />
-            </div>
-          </div>
-
-          {/* Quick Filters - Blue & Orange theme */}
-          <div className="flex flex-wrap justify-center gap-3 mb-14">
-            {[
-              { icon: "🔧", label: "Plumbing", color: "from-blue-600 to-blue-500" },
-              { icon: "⚡", label: "Electrician", color: "from-fb8500 to-ffb81c" },
-              { icon: "❄️", label: "AC Repair", color: "from-blue-600 to-blue-500" },
-              { icon: "🧹", label: "Cleaning", color: "from-fb8500 to-ffb81c" },
-              { icon: "🐜", label: "Pest Control", color: "from-blue-600 to-blue-500" },
-            ].map((filter, idx) => (
-              <button
-                key={filter.label}
-                className={`px-5 py-3 rounded-full bg-gradient-to-r ${filter.color} text-white font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 ${
-                  idx % 2 === 0 ? 'hover:shadow-blue-600/50' : 'hover:shadow-fb8500/50'
-                }`}
-              >
-                {filter.icon} {filter.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Statistics - Mixed Blue & Orange */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-10">
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 ring-1 ring-white/20 hover:ring-fb8500/50 hover:bg-white/15 transition-all">
-              <div className="text-4xl sm:text-5xl font-extrabold text-fb8500">{adCount}+</div>
-              <p className="text-white/80 text-sm sm:text-base mt-2 font-semibold">Active Listings</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 ring-1 ring-white/20 hover:ring-blue-400/50 hover:bg-white/15 transition-all">
-              <div className="text-4xl sm:text-5xl font-extrabold text-blue-300">{catCount}</div>
-              <p className="text-white/80 text-sm sm:text-base mt-2 font-semibold">Categories</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 ring-1 ring-white/20 hover:ring-fb8500/50 hover:bg-white/15 transition-all">
-              <div className="text-4xl sm:text-5xl font-extrabold text-fb8500">100%</div>
-              <p className="text-white/80 text-sm sm:text-base mt-2 font-semibold">Free to Post</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 ring-1 ring-white/20 hover:ring-blue-400/50 hover:bg-white/15 transition-all">
-              <div className="text-4xl sm:text-5xl font-extrabold text-blue-300">24/7</div>
-              <p className="text-white/80 text-sm sm:text-base mt-2 font-semibold">Always Live</p>
             </div>
           </div>
         </div>
