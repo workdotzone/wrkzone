@@ -10,6 +10,8 @@ import Partners from "@/components/Partners";
 import ServiceCatalog from "@/components/ServiceCatalog";
 import FAQ from "@/components/FAQ";
 import AppPromotion from "@/components/AppPromotion";
+import BrowseByCategory from "@/components/BrowseByCategory";
+import TopMetroCities from "@/components/TopMetroCities";
 
 export const dynamic = "force-dynamic";
 
@@ -92,6 +94,12 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* ---------- BROWSE BY CATEGORY ---------- */}
+      <BrowseByCategory />
+
+      {/* ---------- TOP METRO CITIES ---------- */}
+      <TopMetroCities />
 
       {/* ---------- CATEGORIES ---------- */}
       <section id="categories" className="mx-auto max-w-7xl px-6 py-12">
