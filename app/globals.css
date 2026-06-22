@@ -26,7 +26,7 @@
   --color-warning: #fb8500;
   --color-error: #d33b27;
 
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-lora: var(--font-lora), "Lora", serif;
 
   --radius-xl2: 1.25rem;
 }
@@ -44,6 +44,7 @@ body {
   background: linear-gradient(135deg, #f8f9fa 0%, #f0f2f5 100%);
   color: var(--foreground);
   min-height: 100vh;
+  font-family: var(--font-lora);
 }
 
 /* Reusable gradient utilities */
