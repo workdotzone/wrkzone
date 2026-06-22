@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 /* ============================================================
-   WrkZone — Professional Blue & Orange Theme
-   Modern, professional design matching logo brand colors
+   WrkZone — Premium Orange (#fb8500) Brand Theme
+   Modern, vibrant design with primary orange branding
    ============================================================ */
 
 @theme {
-  --color-primary-blue: #004B9A;
-  --color-primary-blue-dark: #003366;
-  --color-primary-blue-light: #1a7cc4;
-  
-  --color-accent-orange: #FF6B35;
-  --color-accent-orange-dark: #E5571F;
-  --color-accent-orange-light: #FF8C5A;
+  --color-primary: #fb8500;
+  --color-primary-dark: #e07a00;
+  --color-primary-light: #ffb81c;
+
+  --color-secondary: #ffd60a;
+  --color-secondary-dark: #ffc300;
+  --color-secondary-light: #ffe66d;
 
   --color-neutral-50: #f8f9fa;
   --color-neutral-100: #f0f2f5;
@@ -23,7 +23,7 @@
   --color-neutral-800: #202124;
 
   --color-success: #1e8e3e;
-  --color-warning: #f57c00;
+  --color-warning: #fb8500;
   --color-error: #d33b27;
 
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
@@ -48,26 +48,26 @@ body {
 
 /* Reusable gradient utilities */
 .primary-gradient {
-  background: linear-gradient(135deg, #004B9A 0%, #1a7cc4 100%);
+  background: linear-gradient(135deg, #fb8500 0%, #ffb81c 100%);
 }
 
 .accent-gradient {
-  background: linear-gradient(135deg, #FF6B35 0%, #FF8C5A 100%);
+  background: linear-gradient(135deg, #ffd60a 0%, #ffb81c 100%);
 }
 
 .brand-gradient {
-  background: linear-gradient(135deg, #004B9A 0%, #FF6B35 100%);
+  background: linear-gradient(135deg, #fb8500 0%, #ffd60a 100%);
 }
 
 .primary-text {
-  background: linear-gradient(135deg, #004B9A 0%, #1a7cc4 100%);
+  background: linear-gradient(135deg, #fb8500 0%, #ffb81c 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .accent-text {
-  background: linear-gradient(135deg, #FF6B35 0%, #FF8C5A 100%);
+  background: linear-gradient(135deg, #ffd60a 0%, #ffb81c 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -86,7 +86,7 @@ body {
 }
 .card-lift:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px -8px rgba(0, 75, 154, 0.15);
+  box-shadow: 0 20px 40px -8px rgba(251, 133, 0, 0.15);
 }
 
 @keyframes float-slow {
@@ -104,7 +104,7 @@ body {
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #004B9A 0%, #FF6B35 100%);
+  background: linear-gradient(135deg, #fb8500 0%, #ffd60a 100%);
   border-radius: 999px;
 }
 ::-webkit-scrollbar-track { background: #f0f2f5; }

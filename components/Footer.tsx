@@ -50,8 +50,8 @@ export default function Footer() {
         <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-neutral-200 pt-6 text-sm text-neutral-600 sm:flex-row">
           <p>© {new Date().getFullYear()} WrkZone. Made with 💙 for hard workers.</p>
           <p className="flex gap-4">
-            <Link href="/about" className="hover:text-primary-blue transition">Privacy</Link>
-            <Link href="/about" className="hover:text-primary-blue transition">Terms</Link>
+            <Link href="/about" className="hover:text-fb8500 transition">Privacy</Link>
+            <Link href="/about" className="hover:text-fb8500 transition">Terms</Link>
           </p>
         </div>
       </div>
@@ -72,7 +72,7 @@ function FooterCol({
       <ul className="mt-3 space-y-2">
         {links.map(([label, href]) => (
           <li key={label}>
-            <Link href={href} className="text-sm text-neutral-600 hover:text-primary-blue transition">
+            <Link href={href} className="text-sm text-neutral-600 hover:text-fb8500 transition">
               {label}
             </Link>
           </li>

@@ -38,7 +38,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <Link
               href="/post"
-              className="rounded-full accent-gradient px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-accent-orange/40 hover:shadow-xl hover:scale-105 transition-all duration-300"
+              className="rounded-full primary-gradient px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-fb8500/40 hover:shadow-xl hover:scale-105 transition-all duration-300"
             >
               + Post Ad
             </Link>
@@ -55,7 +55,7 @@ export default function Navbar() {
                 </Link>
                 <button
                   onClick={() => signOut({ callbackUrl: "/" })}
-                  className="text-sm font-medium text-neutral-600 hover:text-primary-blue transition-colors"
+                  className="text-sm font-medium text-neutral-600 hover:text-fb8500 transition-colors"
                 >
                   Logout
                 </button>
@@ -63,7 +63,7 @@ export default function Navbar() {
             ) : (
               <Link
                 href="/login"
-                className="rounded-full primary-gradient px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-primary-blue/40 hover:shadow-xl hover:scale-105 transition-all duration-300"
+                className="rounded-full primary-gradient px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-fb8500/40 hover:shadow-xl hover:scale-105 transition-all duration-300"
               >
                 Login
               </Link>
@@ -90,7 +90,7 @@ export default function Navbar() {
             <Link
               href="/post"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-full accent-gradient px-5 py-3 text-center text-sm font-bold text-white"
+              className="mt-2 rounded-full primary-gradient px-5 py-3 text-center text-sm font-bold text-white"
             >
               + Post Ad
             </Link>
@@ -131,7 +131,7 @@ function NavLink({
     <Link
       href={href}
       onClick={onClick}
-      className="rounded-full px-4 py-2 text-sm font-semibold text-neutral-600 hover:text-primary-blue hover:bg-blue-50 transition-all duration-300"
+      className="rounded-full px-4 py-2 text-sm font-semibold text-neutral-600 hover:text-fb8500 hover:bg-orange-50 transition-all duration-300"
     >
       {children}
     </Link>

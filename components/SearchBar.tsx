@@ -50,7 +50,7 @@ export default function SearchBar({ large = false }: { large?: boolean }) {
       </div>
       <button
         type="submit"
-        className="rounded-xl accent-gradient px-7 py-3 text-sm font-bold text-white shadow-lg shadow-accent-orange/40 hover:scale-105 transition-transform duration-300 sm:rounded-full"
+        className="rounded-xl primary-gradient px-7 py-3 text-sm font-bold text-white shadow-lg shadow-fb8500/40 hover:scale-105 transition-transform duration-300 sm:rounded-full"
       >
         Search
       </button>

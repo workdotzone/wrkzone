@@ -45,7 +45,7 @@ export default function AdFilters({
         <select
           defaultValue={params.get("sort") || "newest"}
           onChange={(e) => setSort(e.target.value)}
-          className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-semibold outline-none focus:border-primary-blue"
+          className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-semibold outline-none focus:border-fb8500"
         >
           <option value="newest">Newest first</option>
           <option value="price-low">Price: low to high</option>
@@ -71,8 +71,8 @@ function Chip({
       onClick={onClick}
       className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
         activeState
-          ? "primary-gradient text-white shadow-md shadow-primary-blue/30"
-          : "bg-white text-neutral-600 ring-1 ring-neutral-200 hover:ring-primary-blue"
+          ? "primary-gradient text-white shadow-md shadow-fb8500/30"
+          : "bg-white text-neutral-600 ring-1 ring-neutral-200 hover:ring-fb8500"
       }`}
     >
       {label}

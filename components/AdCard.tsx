@@ -19,7 +19,7 @@ export default function AdCard({ ad }: { ad: AdCardData }) {
   return (
     <Link
       href={`/ads/${ad.id}`}
-      className="card-lift group flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-neutral-200/80 shadow-sm hover:shadow-md transition-shadow"
+      className="card-lift group flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-neutral-200/80 shadow-sm hover:shadow-md hover:ring-fb8500 transition-all"
     >
       <div className="relative h-44 overflow-hidden">
         {ad.image ? (
@@ -40,7 +40,7 @@ export default function AdCard({ ad }: { ad: AdCardData }) {
           </div>
         )}
         {ad.featured && (
-          <span className="absolute left-3 top-3 rounded-full bg-accent-orange px-2.5 py-1 text-[11px] font-bold text-white shadow">
+          <span className="absolute left-3 top-3 rounded-full bg-fb8500 px-2.5 py-1 text-[11px] font-bold text-white shadow">
             ⭐ Featured
           </span>
         )}
@@ -53,7 +53,7 @@ export default function AdCard({ ad }: { ad: AdCardData }) {
       </div>
 
       <div className="flex flex-1 flex-col p-4">
-        <h3 className="line-clamp-1 font-bold text-neutral-800 group-hover:text-primary-blue transition">
+        <h3 className="line-clamp-1 font-bold text-neutral-800 group-hover:text-fb8500 transition">
           {ad.title}
         </h3>
         <p className="mt-1 line-clamp-2 text-sm text-neutral-600">{ad.description}</p>
@@ -67,7 +67,7 @@ export default function AdCard({ ad }: { ad: AdCardData }) {
         </div>
 
         <div className="mt-3 flex items-center justify-between border-t border-neutral-100 pt-3">
-          <span className="font-extrabold text-accent-orange">
+          <span className="font-extrabold text-fb8500">
             {formatPrice(ad.price, ad.priceType)}
           </span>
           <span className="text-xs text-neutral-500">{timeAgo(ad.createdAt)}</span>

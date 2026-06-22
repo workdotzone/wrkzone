@@ -85,8 +85,8 @@ export default function PostAdForm({ categories }: { categories: Category[] }) {
                 onClick={() => set("categoryId")(c.id)}
                 className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 text-sm font-semibold transition ${
                   form.categoryId === c.id
-                    ? "border-primary-blue bg-blue-50 text-primary-blue ring-2 ring-primary-blue/30"
-                    : "border-neutral-200 bg-white text-neutral-600 hover:border-primary-blue"
+                    ? "border-fb8500 bg-orange-50 text-fb8500 ring-2 ring-fb8500/30"
+                    : "border-neutral-200 bg-white text-neutral-600 hover:border-fb8500"
                 }`}
               >
                 <span>{c.icon}</span> {c.name}
@@ -101,7 +101,7 @@ export default function PostAdForm({ categories }: { categories: Category[] }) {
             onChange={(e) => set("description")(e.target.value)}
             rows={5}
             placeholder="Describe your service, experience, what's included, and why customers should pick you..."
-            className="mt-1.5 w-full rounded-xl border border-neutral-200 bg-neutral-50/40 px-4 py-3 text-sm outline-none transition focus:border-primary-blue focus:ring-2 focus:ring-primary-blue/30"
+            className="mt-1.5 w-full rounded-xl border border-neutral-200 bg-neutral-50/40 px-4 py-3 text-sm outline-none transition focus:border-fb8500 focus:ring-2 focus:ring-fb8500/30"
           />
         </div>
       </Group>
@@ -114,7 +114,7 @@ export default function PostAdForm({ categories }: { categories: Category[] }) {
             <select
               value={form.priceType}
               onChange={(e) => set("priceType")(e.target.value)}
-              className="mt-1.5 w-full rounded-xl border border-neutral-200 bg-neutral-50/40 px-4 py-3 text-sm outline-none focus:border-primary-blue focus:ring-2 focus:ring-primary-blue/30"
+              className="mt-1.5 w-full rounded-xl border border-neutral-200 bg-neutral-50/40 px-4 py-3 text-sm outline-none focus:border-fb8500 focus:ring-2 focus:ring-fb8500/30"
             >
               <option>Fixed</option>
               <option>Hourly</option>
@@ -133,7 +133,7 @@ export default function PostAdForm({ categories }: { categories: Category[] }) {
               onChange={(e) => {
                 setForm((f) => ({ ...f, state: e.target.value, city: "" }));
               }}
-              className="mt-1.5 w-full rounded-xl border border-neutral-200 bg-neutral-50/40 px-4 py-3 text-sm outline-none focus:border-primary-blue focus:ring-2 focus:ring-primary-blue/30"
+              className="mt-1.5 w-full rounded-xl border border-neutral-200 bg-neutral-50/40 px-4 py-3 text-sm outline-none focus:border-fb8500 focus:ring-2 focus:ring-fb8500/30"
             >
               <option value="">Select a state</option>
               {INDIAN_STATES.map((state) => (
@@ -148,7 +148,7 @@ export default function PostAdForm({ categories }: { categories: Category[] }) {
             <select
               value={form.city}
               onChange={(e) => setForm((f) => ({ ...f, city: e.target.value }))}
-              className="mt-1.5 w-full rounded-xl border border-neutral-200 bg-neutral-50/40 px-4 py-3 text-sm outline-none focus:border-primary-blue focus:ring-2 focus:ring-primary-blue/30 disabled:opacity-50"
+              className="mt-1.5 w-full rounded-xl border border-neutral-200 bg-neutral-50/40 px-4 py-3 text-sm outline-none focus:border-fb8500 focus:ring-2 focus:ring-fb8500/30 disabled:opacity-50"
               disabled={!form.state}
             >
               <option value="">Select a city</option>
@@ -191,7 +191,7 @@ export default function PostAdForm({ categories }: { categories: Category[] }) {
       <div className="flex items-center gap-3">
         <button
           disabled={loading || uploading}
-          className="rounded-full accent-gradient px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-accent-orange/40 hover:scale-105 transition-transform duration-300 disabled:opacity-60"
+          className="rounded-full primary-gradient px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-fb8500/40 hover:scale-105 transition-transform duration-300 disabled:opacity-60"
         >
           {loading ? "Posting..." : "Post my ad →"}
         </button>
