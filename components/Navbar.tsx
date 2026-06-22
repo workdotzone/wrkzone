@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
 import { useState } from "react";
 
@@ -14,13 +15,14 @@ export default function Navbar() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <span className="flex h-10 w-10 items-center justify-center rounded-2xl sunrise-gradient text-xl shadow-lg shadow-sun-500/30 group-hover:scale-105 transition">
-              🌅
-            </span>
-            <span className="text-xl font-extrabold tracking-tight">
-              Wrk<span className="sunrise-text">Zone</span>
-            </span>
+          <Link href="/" className="flex items-center group">
+            <Image 
+              src="/logo.png" 
+              alt="WrkZone Logo" 
+              width={50} 
+              height={50}
+              className="group-hover:scale-105 transition"
+            />
           </Link>
 
           {/* Desktop links */}
