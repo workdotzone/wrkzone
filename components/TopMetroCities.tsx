@@ -16,6 +16,16 @@ export default function TopMetroCities() {
     { emoji: "🌊", name: "Surat", state: "Gujarat", areas: 8 },
     { emoji: "🎪", name: "Lucknow", state: "Uttar Pradesh", areas: 8 },
     { emoji: "🌴", name: "Kochi", state: "Kerala", areas: 8 },
+    { emoji: "🏖️", name: "Goa", state: "Goa", areas: 6 },
+    { emoji: "🧡", name: "Indore", state: "Madhya Pradesh", areas: 7 },
+    { emoji: "🌸", name: "Bhopal", state: "Madhya Pradesh", areas: 7 },
+    { emoji: "📍", name: "Patna", state: "Bihar", areas: 6 },
+    { emoji: "🎪", name: "Vadodara", state: "Gujarat", areas: 6 },
+    { emoji: "🌟", name: "Coimbatore", state: "Tamil Nadu", areas: 6 },
+    { emoji: "🏛️", name: "Nagpur", state: "Maharashtra", areas: 6 },
+    { emoji: "🌾", name: "Thiruvananthapuram", state: "Kerala", areas: 5 },
+    { emoji: "🎯", name: "Chandigarh", state: "Chandigarh", areas: 5 },
+    { emoji: "🚀", name: "Mohali", state: "Punjab", areas: 5 },
   ];
 
   return (
@@ -35,7 +45,7 @@ export default function TopMetroCities() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
         {cities.map((city) => (
           <Link
             key={city.name}
