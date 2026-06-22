@@ -42,83 +42,72 @@ export default async function Home() {
   return (
     <div>
       {/* ---------- HERO ---------- */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-fb8500/20 to-slate-900">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-white to-amber-50" />
-          <div className="absolute top-0 right-0 w-96 h-96 bg-fb8500/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-ffd60a/5 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-fb8500/3 rounded-full blur-2xl" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-fb8500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-fb8500/5 rounded-full blur-3xl" />
         </div>
-        <div className="mx-auto max-w-7xl px-6 pb-16 pt-14 sm:pt-20">
-          <div className="grid items-center gap-10 lg:grid-cols-2">
-            <div className="animate-fade-up">
-              <span className="inline-flex items-center gap-2 rounded-full bg-orange-50 px-4 py-1.5 text-sm font-semibold text-fb8500 ring-1 ring-orange-200">
-                ⚙️ 5,000+ professionals ready to help
-              </span>
-              <h1 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">
-                Find trusted <span className="primary-text">professionals</span> 
-                <br /> in minutes.
-              </h1>
-              <p className="mt-5 max-w-lg text-lg text-neutral-600">
-                Plumbers, AC technicians, electricians, cleaners, pest control & more — post a job or get hired on WrkZone, your friendly local marketplace.
-              </p>
+        
+        <div className="mx-auto max-w-7xl px-6 py-20 sm:py-32 text-center">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 rounded-full bg-fb8500/20 px-4 py-2 mb-6 ring-1 ring-fb8500/40">
+            <span className="w-2 h-2 bg-fb8500 rounded-full animate-pulse"></span>
+            <span className="text-sm font-semibold text-white">WRKZONE'S #1 LOCAL SERVICE MARKETPLACE</span>
+          </div>
 
-              <div className="mt-8 max-w-xl">
-                <SearchBar large />
-              </div>
+          {/* Heading */}
+          <h1 className="text-5xl sm:text-7xl font-extrabold text-white mb-4">
+            Find & Post
+          </h1>
+          <h2 className="text-4xl sm:text-5xl font-bold text-fb8500 mb-6">
+            Professional Services
+          </h2>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  href="/post"
-                  className="rounded-full primary-gradient px-6 py-3 text-sm font-bold text-white shadow-lg shadow-fb8500/40 hover:scale-105 transition-transform duration-300"
-                >
-                  Post your service free →
-                </Link>
-                <Link
-                  href="/ads"
-                  className="rounded-full bg-white px-6 py-3 text-sm font-bold ring-2 ring-neutral-200 hover:ring-fb8500 transition-colors duration-300"
-                >
-                  Browse all ads
-                </Link>
-              </div>
+          {/* Subheading */}
+          <p className="text-lg sm:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+            Browse verified plumbers, electricians, cleaners & more across all major Indian cities. 100% Free • No Registration • Live in 60 Seconds
+          </p>
 
-              <div className="mt-10 flex gap-8">
-                <Stat value={`${adCount}+`} label="Active ads" />
-                <Stat value={`${userCount}+`} label="Members" />
-                <Stat value={`${catCount}`} label="Categories" />
-              </div>
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto mb-8">
+            <SearchBar large />
+          </div>
+
+          {/* Quick Filters */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {[
+              { icon: "🔧", label: "Plumbing" },
+              { icon: "⚡", label: "Electrician" },
+              { icon: "❄️", label: "AC Repair" },
+              { icon: "🧹", label: "Cleaning" },
+              { icon: "🐜", label: "Pest Control" },
+            ].map((filter) => (
+              <button
+                key={filter.label}
+                className="px-4 py-2 rounded-full bg-fb8500/30 ring-1 ring-fb8500 text-white font-medium hover:bg-fb8500/50 transition-all"
+              >
+                {filter.icon} {filter.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Statistics */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+            <div>
+              <div className="text-3xl sm:text-4xl font-extrabold text-fb8500">{adCount}+</div>
+              <p className="text-gray-300 text-sm sm:text-base mt-1">Active Listings</p>
             </div>
-
-            {/* Hero art */}
-            <div className="relative hidden lg:block">
-              <div className="absolute inset-0 animate-float">
-                <div className="absolute right-10 top-0 flex h-28 w-28 items-center justify-center rounded-3xl primary-gradient text-5xl shadow-2xl shadow-fb8500/30">
-                  🔧
-                </div>
-              </div>
-              <div className="mx-auto grid max-w-md grid-cols-2 gap-4 pt-6">
-                {[
-                  { e: "❄️", t: "AC Repair", c: "#fb8500" },
-                  { e: "🧹", t: "Cleaning", c: "#ffd60a" },
-                  { e: "💡", t: "Electrician", c: "#ffb81c" },
-                  { e: "🐜", t: "Pest Control", c: "#fb8500" },
-                ].map((x, i) => (
-                  <div
-                    key={x.t}
-                    className="card-lift rounded-3xl bg-white p-6 text-center shadow-lg ring-1 ring-neutral-200"
-                    style={{ animationDelay: `${i * 80}ms` }}
-                  >
-                    <div
-                      className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl text-3xl"
-                      style={{ background: `${x.c}22` }}
-                    >
-                      {x.e}
-                    </div>
-                    <p className="mt-3 font-bold">{x.t}</p>
-                    <p className="text-xs text-neutral-500">Top rated pros</p>
-                  </div>
-                ))}
-              </div>
+            <div>
+              <div className="text-3xl sm:text-4xl font-extrabold text-fb8500">{catCount}</div>
+              <p className="text-gray-300 text-sm sm:text-base mt-1">Service Categories</p>
+            </div>
+            <div>
+              <div className="text-3xl sm:text-4xl font-extrabold text-fb8500">100%</div>
+              <p className="text-gray-300 text-sm sm:text-base mt-1">Free to Post</p>
+            </div>
+            <div>
+              <div className="text-3xl sm:text-4xl font-extrabold text-fb8500">24/7</div>
+              <p className="text-gray-300 text-sm sm:text-base mt-1">Always Live</p>
             </div>
           </div>
         </div>
