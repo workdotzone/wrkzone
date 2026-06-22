@@ -41,11 +41,11 @@ export default function AdFilters({
         ))}
       </div>
       <div className="flex items-center gap-2">
-        <span className="text-sm font-semibold text-ink-soft">Sort:</span>
+        <span className="text-sm font-semibold text-neutral-600">Sort:</span>
         <select
           defaultValue={params.get("sort") || "newest"}
           onChange={(e) => setSort(e.target.value)}
-          className="rounded-full border border-peach-200 bg-white px-4 py-2 text-sm font-semibold outline-none focus:border-sun-400"
+          className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-semibold outline-none focus:border-primary-blue"
         >
           <option value="newest">Newest first</option>
           <option value="price-low">Price: low to high</option>
@@ -71,8 +71,8 @@ function Chip({
       onClick={onClick}
       className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
         activeState
-          ? "sunrise-gradient text-white shadow-md shadow-sun-500/30"
-          : "bg-white text-ink-soft ring-1 ring-peach-200 hover:ring-sun-400"
+          ? "primary-gradient text-white shadow-md shadow-primary-blue/30"
+          : "bg-white text-neutral-600 ring-1 ring-neutral-200 hover:ring-primary-blue"
       }`}
     >
       {label}

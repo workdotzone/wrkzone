@@ -19,7 +19,7 @@ export default function AdCard({ ad }: { ad: AdCardData }) {
   return (
     <Link
       href={`/ads/${ad.id}`}
-      className="card-lift group flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-peach-200/80 shadow-sm"
+      className="card-lift group flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-neutral-200/80 shadow-sm hover:shadow-md transition-shadow"
     >
       <div className="relative h-44 overflow-hidden">
         {ad.image ? (
@@ -40,7 +40,7 @@ export default function AdCard({ ad }: { ad: AdCardData }) {
           </div>
         )}
         {ad.featured && (
-          <span className="absolute left-3 top-3 rounded-full bg-coral-500 px-2.5 py-1 text-[11px] font-bold text-white shadow">
+          <span className="absolute left-3 top-3 rounded-full bg-accent-orange px-2.5 py-1 text-[11px] font-bold text-white shadow">
             ⭐ Featured
           </span>
         )}
@@ -53,12 +53,12 @@ export default function AdCard({ ad }: { ad: AdCardData }) {
       </div>
 
       <div className="flex flex-1 flex-col p-4">
-        <h3 className="line-clamp-1 font-bold text-ink group-hover:text-sun-600 transition">
+        <h3 className="line-clamp-1 font-bold text-neutral-800 group-hover:text-primary-blue transition">
           {ad.title}
         </h3>
-        <p className="mt-1 line-clamp-2 text-sm text-ink-soft">{ad.description}</p>
+        <p className="mt-1 line-clamp-2 text-sm text-neutral-600">{ad.description}</p>
 
-        <div className="mt-3 flex items-center gap-1 text-sm text-ink-soft">
+        <div className="mt-3 flex items-center gap-1 text-sm text-neutral-600">
           <span>📍</span>
           <span className="truncate">
             {ad.area ? `${ad.area}, ` : ""}
@@ -66,11 +66,11 @@ export default function AdCard({ ad }: { ad: AdCardData }) {
           </span>
         </div>
 
-        <div className="mt-3 flex items-center justify-between border-t border-peach-100 pt-3">
-          <span className="font-extrabold text-sun-600">
+        <div className="mt-3 flex items-center justify-between border-t border-neutral-100 pt-3">
+          <span className="font-extrabold text-accent-orange">
             {formatPrice(ad.price, ad.priceType)}
           </span>
-          <span className="text-xs text-ink-soft">{timeAgo(ad.createdAt)}</span>
+          <span className="text-xs text-neutral-500">{timeAgo(ad.createdAt)}</span>
         </div>
       </div>
     </Link>

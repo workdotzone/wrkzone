@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { POPULAR_METRO_CITIES } from "@/lib/locations";
 
 export default function SearchBar({ large = false }: { large?: boolean }) {
   const router = useRouter();
@@ -19,7 +20,7 @@ export default function SearchBar({ large = false }: { large?: boolean }) {
   return (
     <form
       onSubmit={submit}
-      className={`flex flex-col gap-2 rounded-2xl bg-white p-2 shadow-xl ring-1 ring-peach-200 sm:flex-row ${
+      className={`flex flex-col gap-2 rounded-2xl bg-white p-2 shadow-xl ring-1 ring-neutral-200 sm:flex-row ${
         large ? "sm:rounded-full" : ""
       }`}
     >
@@ -29,21 +30,27 @@ export default function SearchBar({ large = false }: { large?: boolean }) {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="What service do you need? e.g. Plumber, AC repair"
-          className="w-full bg-transparent py-3 text-sm outline-none placeholder:text-ink-soft/60"
+          className="w-full bg-transparent py-3 text-sm outline-none placeholder:text-neutral-600/60"
         />
       </div>
-      <div className="flex items-center gap-2 border-t border-peach-100 px-3 sm:border-l sm:border-t-0">
+      <div className="flex items-center gap-2 border-t border-neutral-100 px-3 sm:border-l sm:border-t-0">
         <span className="text-lg">📍</span>
-        <input
+        <select
           value={city}
           onChange={(e) => setCity(e.target.value)}
-          placeholder="City"
-          className="w-full bg-transparent py-3 text-sm outline-none placeholder:text-ink-soft/60 sm:w-28"
-        />
+          className="w-full bg-transparent py-3 text-sm outline-none placeholder:text-neutral-600/60 sm:w-32"
+        >
+          <option value="">All Cities</option>
+          {POPULAR_METRO_CITIES.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
       </div>
       <button
         type="submit"
-        className="rounded-xl sunrise-gradient px-7 py-3 text-sm font-bold text-white shadow-lg shadow-sun-500/30 hover:scale-[1.02] transition sm:rounded-full"
+        className="rounded-xl accent-gradient px-7 py-3 text-sm font-bold text-white shadow-lg shadow-accent-orange/40 hover:scale-105 transition-transform duration-300 sm:rounded-full"
       >
         Search
       </button>
