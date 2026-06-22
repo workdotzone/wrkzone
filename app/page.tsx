@@ -42,39 +42,45 @@ export default async function Home() {
   return (
     <div>
       {/* ---------- HERO ---------- */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-fb8500/20 to-slate-900">
+      <section className="relative overflow-hidden bg-gradient-to-b from-blue-950 to-slate-900">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-fb8500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-fb8500/5 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-fb8500/15 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-fb8500/10 rounded-full blur-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900/50" />
         </div>
         
-        <div className="mx-auto max-w-7xl px-6 py-20 sm:py-32 text-center">
+        <div className="mx-auto max-w-7xl px-6 py-16 sm:py-28 text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full bg-fb8500/20 px-4 py-2 mb-6 ring-1 ring-fb8500/40">
+          <div className="inline-flex items-center gap-2 rounded-full bg-fb8500/40 px-4 py-2 mb-6 ring-2 ring-fb8500/60 backdrop-blur-sm">
             <span className="w-2 h-2 bg-fb8500 rounded-full animate-pulse"></span>
-            <span className="text-sm font-semibold text-white">WRKZONE'S #1 LOCAL SERVICE MARKETPLACE</span>
+            <span className="text-sm font-bold text-white">🚀 WRKZONE'S #1 LOCAL SERVICE MARKETPLACE</span>
           </div>
 
-          {/* Heading */}
-          <h1 className="text-5xl sm:text-7xl font-extrabold text-white mb-4">
+          {/* Heading - Main */}
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-extrabold text-white mb-2 leading-tight">
             Find & Post
           </h1>
-          <h2 className="text-4xl sm:text-5xl font-bold text-fb8500 mb-6">
+          
+          {/* Heading - Accent */}
+          <h2 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-fb8500 to-ffb81c bg-clip-text text-transparent mb-8">
             Professional Services
           </h2>
 
           {/* Subheading */}
-          <p className="text-lg sm:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-            Browse verified plumbers, electricians, cleaners & more across all major Indian cities. 100% Free • No Registration • Live in 60 Seconds
+          <p className="text-lg sm:text-xl text-white/90 mb-12 max-w-3xl mx-auto font-medium">
+            Browse verified plumbers, electricians, cleaners & more across all major Indian cities. 
+            <span className="block mt-2 text-fb8500 font-bold">100% Free • No Registration • Live in 60 Seconds</span>
           </p>
 
           {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-8">
-            <SearchBar large />
+          <div className="max-w-2xl mx-auto mb-10">
+            <div className="drop-shadow-2xl">
+              <SearchBar large />
+            </div>
           </div>
 
           {/* Quick Filters */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+          <div className="flex flex-wrap justify-center gap-3 mb-14">
             {[
               { icon: "🔧", label: "Plumbing" },
               { icon: "⚡", label: "Electrician" },
@@ -84,7 +90,7 @@ export default async function Home() {
             ].map((filter) => (
               <button
                 key={filter.label}
-                className="px-4 py-2 rounded-full bg-fb8500/30 ring-1 ring-fb8500 text-white font-medium hover:bg-fb8500/50 transition-all"
+                className="px-5 py-3 rounded-full bg-gradient-to-r from-fb8500 to-ffb81c text-white font-semibold hover:shadow-lg hover:shadow-fb8500/50 hover:scale-105 transition-all duration-300"
               >
                 {filter.icon} {filter.label}
               </button>
@@ -92,22 +98,22 @@ export default async function Home() {
           </div>
 
           {/* Statistics */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-            <div>
-              <div className="text-3xl sm:text-4xl font-extrabold text-fb8500">{adCount}+</div>
-              <p className="text-gray-300 text-sm sm:text-base mt-1">Active Listings</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-10">
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 ring-1 ring-white/20 hover:ring-fb8500/50 transition-all">
+              <div className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-fb8500 to-ffb81c bg-clip-text text-transparent">{adCount}+</div>
+              <p className="text-white/80 text-sm sm:text-base mt-2 font-semibold">Active Listings</p>
             </div>
-            <div>
-              <div className="text-3xl sm:text-4xl font-extrabold text-fb8500">{catCount}</div>
-              <p className="text-gray-300 text-sm sm:text-base mt-1">Service Categories</p>
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 ring-1 ring-white/20 hover:ring-fb8500/50 transition-all">
+              <div className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-fb8500 to-ffb81c bg-clip-text text-transparent">{catCount}</div>
+              <p className="text-white/80 text-sm sm:text-base mt-2 font-semibold">Service Categories</p>
             </div>
-            <div>
-              <div className="text-3xl sm:text-4xl font-extrabold text-fb8500">100%</div>
-              <p className="text-gray-300 text-sm sm:text-base mt-1">Free to Post</p>
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 ring-1 ring-white/20 hover:ring-fb8500/50 transition-all">
+              <div className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-fb8500 to-ffb81c bg-clip-text text-transparent">100%</div>
+              <p className="text-white/80 text-sm sm:text-base mt-2 font-semibold">Free to Post</p>
             </div>
-            <div>
-              <div className="text-3xl sm:text-4xl font-extrabold text-fb8500">24/7</div>
-              <p className="text-gray-300 text-sm sm:text-base mt-1">Always Live</p>
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 ring-1 ring-white/20 hover:ring-fb8500/50 transition-all">
+              <div className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-fb8500 to-ffb81c bg-clip-text text-transparent">24/7</div>
+              <p className="text-white/80 text-sm sm:text-base mt-2 font-semibold">Always Live</p>
             </div>
           </div>
         </div>
