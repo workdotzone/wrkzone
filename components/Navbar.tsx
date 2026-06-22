@@ -11,17 +11,18 @@ export default function Navbar() {
   const isAdmin = session?.user?.role === "ADMIN";
 
   return (
-    <header className="sticky top-0 z-50 glass border-b border-peach-200/70">
+    <header className="sticky top-0 z-50 glass border-b border-neutral-200 shadow-sm">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center group">
             <Image 
               src="/logo.png" 
               alt="WrkZone Logo" 
-              width={50} 
-              height={50}
-              className="group-hover:scale-105 transition"
+              width={90} 
+              height={90}
+              className="group-hover:scale-110 transition-transform duration-300"
+              priority
             />
           </Link>
 
@@ -37,7 +38,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <Link
               href="/post"
-              className="rounded-full sunrise-gradient px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-sun-500/30 hover:shadow-xl hover:scale-[1.03] transition"
+              className="rounded-full accent-gradient px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-accent-orange/40 hover:shadow-xl hover:scale-105 transition-all duration-300"
             >
               + Post Ad
             </Link>
@@ -45,16 +46,16 @@ export default function Navbar() {
               <div className="flex items-center gap-2">
                 <Link
                   href="/dashboard"
-                  className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-sm font-semibold shadow-sm hover:shadow ring-1 ring-peach-200"
+                  className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-sm font-semibold shadow-sm hover:shadow-md ring-1 ring-neutral-200 transition-all"
                 >
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-sun-400 text-white text-xs font-bold">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full primary-gradient text-white text-xs font-bold">
                     {session.user?.name?.[0]?.toUpperCase() ?? "U"}
                   </span>
                   {session.user?.name?.split(" ")[0]}
                 </Link>
                 <button
                   onClick={() => signOut({ callbackUrl: "/" })}
-                  className="text-sm font-medium text-ink-soft hover:text-coral-500"
+                  className="text-sm font-medium text-neutral-600 hover:text-primary-blue transition-colors"
                 >
                   Logout
                 </button>
@@ -62,7 +63,7 @@ export default function Navbar() {
             ) : (
               <Link
                 href="/login"
-                className="rounded-full bg-white px-5 py-2.5 text-sm font-bold text-ink ring-1 ring-peach-200 hover:ring-sun-400 transition"
+                className="rounded-full primary-gradient px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-primary-blue/40 hover:shadow-xl hover:scale-105 transition-all duration-300"
               >
                 Login
               </Link>
@@ -71,11 +72,11 @@ export default function Navbar() {
 
           {/* Mobile toggle */}
           <button
-            className="md:hidden flex h-10 w-10 items-center justify-center rounded-xl bg-white ring-1 ring-peach-200"
+            className="md:hidden flex h-10 w-10 items-center justify-center rounded-lg primary-gradient text-white font-bold text-lg"
             onClick={() => setOpen(!open)}
             aria-label="Menu"
           >
-            <span className="text-xl">{open ? "✕" : "☰"}</span>
+            <span>{open ? "✕" : "☰"}</span>
           </button>
         </div>
 
@@ -89,13 +90,13 @@ export default function Navbar() {
             <Link
               href="/post"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-full sunrise-gradient px-5 py-3 text-center text-sm font-bold text-white"
+              className="mt-2 rounded-full accent-gradient px-5 py-3 text-center text-sm font-bold text-white"
             >
               + Post Ad
             </Link>
             {session ? (
               <>
-                <Link href="/dashboard" onClick={() => setOpen(false)} className="rounded-xl bg-white px-4 py-3 text-sm font-semibold ring-1 ring-peach-200">
+                <Link href="/dashboard" onClick={() => setOpen(false)} className="rounded-xl bg-neutral-100 px-4 py-3 text-sm font-semibold ring-1 ring-neutral-200">
                   My Dashboard
                 </Link>
                 <button
@@ -130,7 +131,7 @@ function NavLink({
     <Link
       href={href}
       onClick={onClick}
-      className="rounded-full px-4 py-2 text-sm font-semibold text-ink-soft hover:text-ink hover:bg-peach-100 transition"
+      className="rounded-full px-4 py-2 text-sm font-semibold text-neutral-600 hover:text-primary-blue hover:bg-blue-50 transition-all duration-300"
     >
       {children}
     </Link>

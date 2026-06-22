@@ -38,33 +38,31 @@ export default async function Home() {
         <div className="mx-auto max-w-7xl px-6 pb-16 pt-14 sm:pt-20">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <div className="animate-fade-up">
-              <span className="inline-flex items-center gap-2 rounded-full bg-peach-100 px-4 py-1.5 text-sm font-semibold text-sun-600 ring-1 ring-peach-200">
-                ☀️ Good morning! 5,000+ pros ready to help
+              <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-1.5 text-sm font-semibold text-primary-blue ring-1 ring-blue-200">
+                ⚙️ 5,000+ professionals ready to help
               </span>
               <h1 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">
-                Find a trusted <span className="sunrise-text">handyman</span> in
-                minutes.
+                Find trusted <span className="primary-text">professionals</span> 
+                <br /> in minutes.
               </h1>
-              <p className="mt-5 max-w-lg text-lg text-ink-soft">
-                Plumbers, AC technicians, pest control, cleaners, electricians &
-                more — post a job or get hired on WrkZone, your friendly local
-                classifieds.
+              <p className="mt-5 max-w-lg text-lg text-neutral-600">
+                Plumbers, AC technicians, electricians, cleaners, pest control & more — post a job or get hired on WrkZone, your friendly local marketplace.
               </p>
 
               <div className="mt-8 max-w-xl">
                 <SearchBar large />
               </div>
 
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   href="/post"
-                  className="rounded-full sunrise-gradient px-6 py-3 text-sm font-bold text-white shadow-lg shadow-sun-500/30 hover:scale-[1.03] transition"
+                  className="rounded-full accent-gradient px-6 py-3 text-sm font-bold text-white shadow-lg shadow-accent-orange/40 hover:scale-105 transition-transform duration-300"
                 >
                   Post your service free →
                 </Link>
                 <Link
                   href="/ads"
-                  className="rounded-full bg-white px-6 py-3 text-sm font-bold ring-1 ring-peach-200 hover:ring-sun-400 transition"
+                  className="rounded-full bg-white px-6 py-3 text-sm font-bold ring-2 ring-neutral-200 hover:ring-primary-blue transition-colors duration-300"
                 >
                   Browse all ads
                 </Link>
@@ -80,20 +78,20 @@ export default async function Home() {
             {/* Hero art */}
             <div className="relative hidden lg:block">
               <div className="absolute inset-0 animate-float">
-                <div className="absolute right-10 top-0 flex h-28 w-28 items-center justify-center rounded-3xl sunrise-gradient text-5xl shadow-2xl shadow-sun-500/30">
+                <div className="absolute right-10 top-0 flex h-28 w-28 items-center justify-center rounded-3xl primary-gradient text-5xl shadow-2xl shadow-primary-blue/30">
                   🔧
                 </div>
               </div>
               <div className="mx-auto grid max-w-md grid-cols-2 gap-4 pt-6">
                 {[
-                  { e: "❄️", t: "AC Repair", c: "#06b6d4" },
-                  { e: "🧹", t: "Cleaning", c: "#f59e0b" },
-                  { e: "💡", t: "Electrician", c: "#eab308" },
-                  { e: "🐜", t: "Pest Control", c: "#84cc16" },
+                  { e: "❄️", t: "AC Repair", c: "#004B9A" },
+                  { e: "🧹", t: "Cleaning", c: "#FF6B35" },
+                  { e: "💡", t: "Electrician", c: "#1a7cc4" },
+                  { e: "🐜", t: "Pest Control", c: "#FF8C5A" },
                 ].map((x, i) => (
                   <div
                     key={x.t}
-                    className="card-lift rounded-3xl bg-white p-6 text-center shadow-lg ring-1 ring-peach-200"
+                    className="card-lift rounded-3xl bg-white p-6 text-center shadow-lg ring-1 ring-neutral-200"
                     style={{ animationDelay: `${i * 80}ms` }}
                   >
                     <div
@@ -103,7 +101,7 @@ export default async function Home() {
                       {x.e}
                     </div>
                     <p className="mt-3 font-bold">{x.t}</p>
-                    <p className="text-xs text-ink-soft">Top rated pros</p>
+                    <p className="text-xs text-neutral-500">Top rated pros</p>
                   </div>
                 ))}
               </div>
@@ -123,7 +121,7 @@ export default async function Home() {
             <Link
               key={c.id}
               href={`/category/${c.slug}`}
-              className="card-lift flex flex-col items-center gap-2 rounded-2xl bg-white p-5 text-center ring-1 ring-peach-200/80"
+              className="card-lift flex flex-col items-center gap-2 rounded-2xl bg-white p-5 text-center ring-1 ring-neutral-200/80 hover:ring-primary-blue transition-all"
             >
               <span
                 className="flex h-14 w-14 items-center justify-center rounded-2xl text-2xl"
@@ -132,7 +130,7 @@ export default async function Home() {
                 {c.icon}
               </span>
               <span className="text-sm font-bold leading-tight">{c.name}</span>
-              <span className="text-xs text-ink-soft">{c._count.ads} ads</span>
+              <span className="text-xs text-neutral-500">{c._count.ads} ads</span>
             </Link>
           ))}
         </div>
@@ -157,7 +155,7 @@ export default async function Home() {
           />
           <Link
             href="/ads"
-            className="hidden shrink-0 rounded-full bg-white px-5 py-2.5 text-sm font-bold ring-1 ring-peach-200 hover:ring-sun-400 sm:block"
+            className="hidden shrink-0 rounded-full bg-white px-5 py-2.5 text-sm font-bold ring-2 ring-neutral-200 hover:ring-primary-blue sm:block transition-colors"
           >
             View all →
           </Link>
@@ -168,9 +166,9 @@ export default async function Home() {
           ))}
         </div>
         {featured.length === 0 && (
-          <p className="mt-8 text-center text-ink-soft">
+          <p className="mt-8 text-center text-neutral-600">
             No ads yet — be the first to{" "}
-            <Link href="/post" className="font-bold text-sun-600">post one</Link>!
+            <Link href="/post" className="font-bold text-primary-blue">post one</Link>!
           </p>
         )}
       </section>
@@ -184,13 +182,13 @@ export default async function Home() {
             { n: "2", e: "💬", t: "Connect directly", d: "Customers call or message you straight from your ad — no middleman fees." },
             { n: "3", e: "⭐", t: "Get hired & reviewed", d: "Do great work, collect ratings, and grow your local reputation." },
           ].map((s) => (
-            <div key={s.n} className="relative rounded-3xl bg-white p-7 ring-1 ring-peach-200 shadow-sm">
-              <span className="absolute -top-4 left-7 flex h-9 w-9 items-center justify-center rounded-full sunrise-gradient text-sm font-bold text-white shadow">
+            <div key={s.n} className="relative rounded-3xl bg-white p-7 ring-1 ring-neutral-200 shadow-sm hover:shadow-md transition-shadow">
+              <span className="absolute -top-4 left-7 flex h-9 w-9 items-center justify-center rounded-full primary-gradient text-sm font-bold text-white shadow">
                 {s.n}
               </span>
               <div className="text-4xl">{s.e}</div>
-              <h3 className="mt-3 text-lg font-bold">{s.t}</h3>
-              <p className="mt-1 text-sm text-ink-soft">{s.d}</p>
+              <h3 className="mt-3 text-lg font-bold text-neutral-800">{s.t}</h3>
+              <p className="mt-1 text-sm text-neutral-600">{s.d}</p>
             </div>
           ))}
         </div>
@@ -198,19 +196,18 @@ export default async function Home() {
 
       {/* ---------- CTA ---------- */}
       <section className="mx-auto max-w-7xl px-6 py-12">
-        <div className="relative overflow-hidden rounded-3xl sunrise-gradient px-8 py-14 text-center text-white shadow-2xl shadow-sun-500/30">
+        <div className="relative overflow-hidden rounded-3xl brand-gradient px-8 py-14 text-center text-white shadow-2xl shadow-primary-blue/30">
           <div className="absolute -right-10 -top-10 h-48 w-48 rounded-full bg-white/20" />
           <div className="absolute -bottom-12 -left-8 h-40 w-40 rounded-full bg-white/10" />
           <h2 className="relative text-3xl font-extrabold sm:text-4xl">
             Ready to grow your business?
           </h2>
           <p className="relative mx-auto mt-3 max-w-xl text-white/90">
-            Join thousands of handymen getting hired every day. Posting your
-            first ad takes less than 2 minutes.
+            Join thousands of professionals getting hired every day. Posting your first service takes less than 2 minutes.
           </p>
           <Link
             href="/post"
-            className="relative mt-7 inline-block rounded-full bg-white px-8 py-3.5 text-sm font-extrabold text-sun-600 shadow-lg hover:scale-[1.03] transition"
+            className="relative mt-7 inline-block rounded-full bg-white px-8 py-3.5 text-sm font-extrabold text-primary-blue shadow-lg hover:scale-105 transition-transform duration-300"
           >
             Post your free ad →
           </Link>

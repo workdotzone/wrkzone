@@ -1,29 +1,30 @@
 @import "tailwindcss";
 
 /* ============================================================
-   WrkZone — "Happy Morning" sunrise theme
-   Warm amber / peach / sunny-yellow with sky-blue accents
+   WrkZone — Professional Blue & Orange Theme
+   Modern, professional design matching logo brand colors
    ============================================================ */
 
 @theme {
-  --color-cream: #fffdf7;
-  --color-peach-50: #fff7ed;
-  --color-peach-100: #ffedd5;
-  --color-peach-200: #fed7aa;
+  --color-primary-blue: #004B9A;
+  --color-primary-blue-dark: #003366;
+  --color-primary-blue-light: #1a7cc4;
+  
+  --color-accent-orange: #FF6B35;
+  --color-accent-orange-dark: #E5571F;
+  --color-accent-orange-light: #FF8C5A;
 
-  --color-sun-400: #fbbf24;
-  --color-sun-500: #f59e0b;
-  --color-sun-600: #d97706;
+  --color-neutral-50: #f8f9fa;
+  --color-neutral-100: #f0f2f5;
+  --color-neutral-200: #e8eaed;
+  --color-neutral-300: #dcdfe4;
+  --color-neutral-600: #5a6368;
+  --color-neutral-700: #3c4043;
+  --color-neutral-800: #202124;
 
-  --color-coral-400: #fb7185;
-  --color-coral-500: #f43f5e;
-
-  --color-sky-400: #38bdf8;
-  --color-sky-500: #0ea5e9;
-  --color-sky-600: #0284c7;
-
-  --color-ink: #3a2e1f;
-  --color-ink-soft: #6b5b47;
+  --color-success: #1e8e3e;
+  --color-warning: #f57c00;
+  --color-error: #d33b27;
 
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
 
@@ -31,8 +32,8 @@
 }
 
 :root {
-  --background: #fffdf7;
-  --foreground: #3a2e1f;
+  --background: #f8f9fa;
+  --foreground: #202124;
 }
 
 html {
@@ -40,37 +41,52 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(1200px 600px at 80% -10%, #fff3d6 0%, transparent 60%),
-    radial-gradient(900px 500px at -10% 0%, #ffe8d6 0%, transparent 55%),
-    var(--background);
+  background: linear-gradient(135deg, #f8f9fa 0%, #f0f2f5 100%);
   color: var(--foreground);
   min-height: 100vh;
 }
 
 /* Reusable gradient utilities */
-.sunrise-gradient {
-  background: linear-gradient(135deg, #fbbf24 0%, #fb923c 45%, #f43f5e 100%);
+.primary-gradient {
+  background: linear-gradient(135deg, #004B9A 0%, #1a7cc4 100%);
 }
-.sunrise-text {
-  background: linear-gradient(135deg, #f59e0b 0%, #fb7185 100%);
+
+.accent-gradient {
+  background: linear-gradient(135deg, #FF6B35 0%, #FF8C5A 100%);
+}
+
+.brand-gradient {
+  background: linear-gradient(135deg, #004B9A 0%, #FF6B35 100%);
+}
+
+.primary-text {
+  background: linear-gradient(135deg, #004B9A 0%, #1a7cc4 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
+
+.accent-text {
+  background: linear-gradient(135deg, #FF6B35 0%, #FF8C5A 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .glass {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Card hover lift */
 .card-lift {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .card-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 40px -12px rgba(217, 119, 6, 0.28);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -8px rgba(0, 75, 154, 0.15);
 }
 
 @keyframes float-slow {
@@ -88,7 +104,7 @@ body {
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-thumb {
-  background: #fcd34d;
+  background: linear-gradient(135deg, #004B9A 0%, #FF6B35 100%);
   border-radius: 999px;
 }
-::-webkit-scrollbar-track { background: #fff7ed; }
+::-webkit-scrollbar-track { background: #f0f2f5; }
