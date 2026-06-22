@@ -10,7 +10,6 @@ import FAQ from "@/components/FAQ";
 import AppPromotion from "@/components/AppPromotion";
 import BrowseByCategory from "@/components/BrowseByCategory";
 import TopMetroCities from "@/components/TopMetroCities";
-import BecomeVerifiedPro from "@/components/BecomeVerifiedPro";
 
 export const dynamic = "force-dynamic";
 
@@ -99,9 +98,6 @@ export default async function Home() {
 
       {/* ---------- TOP METRO CITIES ---------- */}
       <TopMetroCities />
-
-      {/* ---------- BECOME VERIFIED PRO ---------- */}
-      <BecomeVerifiedPro />
 
       {/* ---------- BANNER AD ---------- */}
       {banner && (
