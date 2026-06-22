@@ -2,9 +2,7 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import SearchBar from "@/components/SearchBar";
 import AdCard from "@/components/AdCard";
-import PopularServices from "@/components/PopularServices";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import Statistics from "@/components/Statistics";
 import Testimonials from "@/components/Testimonials";
 import Partners from "@/components/Partners";
 import ServiceCatalog from "@/components/ServiceCatalog";
@@ -141,12 +139,6 @@ export default async function Home() {
           </p>
         )}
       </section>
-
-      {/* ---------- POPULAR SERVICES ---------- */}
-      <PopularServices />
-
-      {/* ---------- STATISTICS ---------- */}
-      <Statistics />
 
       {/* ---------- WHY CHOOSE US ---------- */}
       <WhyChooseUs />
