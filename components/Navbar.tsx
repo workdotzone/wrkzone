@@ -13,14 +13,14 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 glass border-b border-neutral-200 shadow-sm">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-24 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center group">
             <Image 
               src="/logo.png" 
               alt="WrkZone Logo" 
-              width={90} 
-              height={90}
+              width={110} 
+              height={110}
               className="group-hover:scale-110 transition-transform duration-300"
               priority
             />

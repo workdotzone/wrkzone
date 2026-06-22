@@ -35,6 +35,12 @@ export default async function Home() {
     <div>
       {/* ---------- HERO ---------- */}
       <section className="relative overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-orange-50" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary-blue/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-orange/5 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-primary-blue/3 rounded-full blur-2xl" />
+        </div>
         <div className="mx-auto max-w-7xl px-6 pb-16 pt-14 sm:pt-20">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <div className="animate-fade-up">
