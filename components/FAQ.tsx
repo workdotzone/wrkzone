@@ -71,30 +71,29 @@ const faqs: FAQItem[] = [
   },
 ];
 
-export default function FAQ() {\n  const [openIndex, setOpenIndex] = useState<number | null>(null);
+export default function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const leftFaqs = faqs.slice(0, 6);
   const rightFaqs = faqs.slice(6, 12);
 
   const FAQItem = ({ faq, idx, isOpen, onClick }: { faq: FAQItem; idx: number; isOpen: boolean; onClick: () => void }) => (
-    <div
-      className=\"group relative rounded-2xl overflow-hidden transition-all duration-300\"
-    >
+    <div className="group relative rounded-2xl overflow-hidden transition-all duration-300">
       {/* Gradient glow on hover */}
       <div className={`absolute inset-0 bg-gradient-to-r ${isOpen ? 'from-blue-600/20 to-fb8500/20' : 'from-blue-600/0 to-fb8500/0'} group-hover:from-blue-600/10 group-hover:to-fb8500/10 rounded-2xl transition-all`} />
-      
+
       {/* Card */}
-      <div className=\"relative bg-white/80 backdrop-blur-sm ring-2 ring-white/50 group-hover:ring-fb8500/50 shadow-md group-hover:shadow-lg transition-all\">
+      <div className="relative bg-white/80 backdrop-blur-sm ring-2 ring-white/50 group-hover:ring-fb8500/50 shadow-md group-hover:shadow-lg transition-all">
         <button
           onClick={onClick}
-          className=\"w-full px-6 py-5 flex items-start gap-4 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-orange-50/50 transition-all text-left\"
+          className="w-full px-6 py-5 flex items-start gap-4 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-orange-50/50 transition-all text-left"
         >
           {/* Icon */}
-          <span className=\"text-2xl flex-shrink-0 mt-0.5\">{faq.icon}</span>
-          
+          <span className="text-2xl flex-shrink-0 mt-0.5">{faq.icon}</span>
+
           {/* Question and chevron */}
-          <div className=\"flex-1 flex items-center justify-between gap-3\">
-            <span className=\"font-bold text-neutral-900 text-sm sm:text-base leading-tight group-hover:text-fb8500 transition-colors\">
+          <div className="flex-1 flex items-center justify-between gap-3">
+            <span className="font-bold text-neutral-900 text-sm sm:text-base leading-tight group-hover:text-fb8500 transition-colors">
               {faq.question}
             </span>
             <span
@@ -109,7 +108,7 @@ export default function FAQ() {\n  const [openIndex, setOpenIndex] = useState<nu
 
         {/* Answer */}
         {isOpen && (
-          <div className=\"px-6 py-4 border-t-2 border-gradient-to-r from-blue-600/20 to-fb8500/20 bg-gradient-to-r from-blue-50/30 to-orange-50/30 text-neutral-700 text-sm leading-relaxed animate-in fade-in slide-in-from-up-2 duration-300\">
+          <div className="px-6 py-4 border-t-2 border-gradient-to-r from-blue-600/20 to-fb8500/20 bg-gradient-to-r from-blue-50/30 to-orange-50/30 text-neutral-700 text-sm leading-relaxed animate-in fade-in slide-in-from-up-2 duration-300">
             {faq.answer}
           </div>
         )}
@@ -118,28 +117,28 @@ export default function FAQ() {\n  const [openIndex, setOpenIndex] = useState<nu
   );
 
   return (
-    <section className=\"mx-auto max-w-7xl px-6 py-20 relative\">
+    <section className="mx-auto max-w-7xl px-6 py-20 relative">
       {/* Background decoration */}
-      <div className=\"absolute inset-0 -z-10 rounded-3xl bg-gradient-to-br from-blue-50/50 via-white to-orange-50/50 opacity-60 blur-3xl pointer-events-none\" />
-      
-      <div className=\"text-center mb-16\">
-        <div className=\"inline-block px-4 py-2 bg-gradient-to-r from-blue-600/20 to-fb8500/20 rounded-full border border-fb8500/30 mb-4\">
-          <span className=\"text-sm font-bold bg-gradient-to-r from-blue-600 to-fb8500 bg-clip-text text-transparent\">
+      <div className="absolute inset-0 -z-10 rounded-3xl bg-gradient-to-br from-blue-50/50 via-white to-orange-50/50 opacity-60 blur-3xl pointer-events-none" />
+
+      <div className="text-center mb-16">
+        <div className="inline-block px-4 py-2 bg-gradient-to-r from-blue-600/20 to-fb8500/20 rounded-full border border-fb8500/30 mb-4">
+          <span className="text-sm font-bold bg-gradient-to-r from-blue-600 to-fb8500 bg-clip-text text-transparent">
             ❓ Got Questions?
           </span>
         </div>
-        <h2 className=\"text-4xl sm:text-5xl font-extrabold mb-4\">
-          Frequently Asked <span className=\"bg-gradient-to-r from-blue-600 to-fb8500 bg-clip-text text-transparent\">Questions</span>
+        <h2 className="text-4xl sm:text-5xl font-extrabold mb-4">
+          Frequently Asked <span className="bg-gradient-to-r from-blue-600 to-fb8500 bg-clip-text text-transparent">Questions</span>
         </h2>
-        <p className=\"text-lg text-neutral-700 max-w-3xl mx-auto leading-relaxed\">
+        <p className="text-lg text-neutral-700 max-w-3xl mx-auto leading-relaxed">
           Find answers to common questions about WrkZone
         </p>
       </div>
 
       {/* Two column layout */}
-      <div className=\"grid md:grid-cols-2 gap-6 mb-12\">
+      <div className="grid md:grid-cols-2 gap-6 mb-12">
         {/* Left column */}
-        <div className=\"space-y-4\">
+        <div className="space-y-4">
           {leftFaqs.map((faq, idx) => (
             <FAQItem
               key={idx}
@@ -152,7 +151,7 @@ export default function FAQ() {\n  const [openIndex, setOpenIndex] = useState<nu
         </div>
 
         {/* Right column */}
-        <div className=\"space-y-4\">
+        <div className="space-y-4">
           {rightFaqs.map((faq, idx) => (
             <FAQItem
               key={idx + 6}
@@ -166,15 +165,15 @@ export default function FAQ() {\n  const [openIndex, setOpenIndex] = useState<nu
       </div>
 
       {/* CTA Section */}
-      <div className=\"relative overflow-hidden rounded-3xl\">
-        <div className=\"absolute inset-0 bg-gradient-to-r from-blue-600 to-fb8500 opacity-10 rounded-3xl\" />
-        <div className=\"relative bg-gradient-to-r from-blue-50 to-orange-50 ring-2 ring-blue-200/50 rounded-3xl p-10 sm:p-12 text-center\">
-          <p className=\"text-lg text-neutral-700 mb-6 font-medium\">
+      <div className="relative overflow-hidden rounded-3xl">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-fb8500 opacity-10 rounded-3xl" />
+        <div className="relative bg-gradient-to-r from-blue-50 to-orange-50 ring-2 ring-blue-200/50 rounded-3xl p-10 sm:p-12 text-center">
+          <p className="text-lg text-neutral-700 mb-6 font-medium">
             Still have questions? Our support team is here to help!
           </p>
           <a
-            href=\"mailto:support@wrkzone.com\"
-            className=\"inline-block px-10 py-4 rounded-full bg-gradient-to-r from-blue-600 to-fb8500 text-white font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300\"
+            href="mailto:support@wrkzone.com"
+            className="inline-block px-10 py-4 rounded-full bg-gradient-to-r from-blue-600 to-fb8500 text-white font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
             Contact Support Team
           </a>
@@ -182,8 +181,8 @@ export default function FAQ() {\n  const [openIndex, setOpenIndex] = useState<nu
       </div>
 
       {/* Decorative elements */}
-      <div className=\"absolute -top-10 -right-10 w-40 h-40 bg-fb8500/10 rounded-full blur-3xl pointer-events-none\" />
-      <div className=\"absolute -bottom-10 -left-10 w-40 h-40 bg-blue-600/10 rounded-full blur-3xl pointer-events-none\" />
+      <div className="absolute -top-10 -right-10 w-40 h-40 bg-fb8500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
     </section>
   );
 }
