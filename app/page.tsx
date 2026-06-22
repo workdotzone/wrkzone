@@ -101,32 +101,6 @@ export default async function Home() {
       {/* ---------- TOP METRO CITIES ---------- */}
       <TopMetroCities />
 
-      {/* ---------- CATEGORIES ---------- */}
-      <section id="categories" className="mx-auto max-w-7xl px-6 py-12">
-        <SectionHeading
-          title="Browse by category"
-          subtitle="Pick a service and find the right pro near you"
-        />
-        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-          {categories.map((c) => (
-            <Link
-              key={c.id}
-              href={`/category/${c.slug}`}
-              className="card-lift flex flex-col items-center gap-2 rounded-2xl bg-white p-5 text-center ring-1 ring-neutral-200/80 hover:ring-fb8500 transition-all"
-            >
-              <span
-                className="flex h-14 w-14 items-center justify-center rounded-2xl text-2xl"
-                style={{ background: `${c.color}1f` }}
-              >
-                {c.icon}
-              </span>
-              <span className="text-sm font-bold leading-tight">{c.name}</span>
-              <span className="text-xs text-neutral-500">{c._count.ads} ads</span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
       {/* ---------- BANNER AD ---------- */}
       {banner && (
         <section className="mx-auto max-w-7xl px-6 py-4">
