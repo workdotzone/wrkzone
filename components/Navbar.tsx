@@ -19,9 +19,9 @@ export default function Navbar() {
             <Image 
               src="/logo.png" 
               alt="WrkZone Logo" 
-              width={110} 
-              height={110}
-              className="group-hover:scale-110 transition-transform duration-300"
+              width={160} 
+              height={160}
+              className="group-hover:scale-110 transition-transform duration-300 filter drop-shadow-[0_0_12px_rgba(251,133,0,0.4)] hover:drop-shadow-[0_0_16px_rgba(251,133,0,0.6)]"
               priority
             />
           </Link>
