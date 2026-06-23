@@ -5,13 +5,22 @@
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
+    "build:app": "npm run build && cap sync android",
     "start": "next start",
+    "android": "cap open android",
+    "ios": "cap open ios",
+    "cap:init": "cap init",
+    "cap:sync": "cap sync",
+    "cap:build": "cap build",
     "postinstall": "prisma generate",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
     "db:reset": "prisma db push --force-reset && tsx prisma/seed.ts"
   },
   "dependencies": {
+    "@capacitor/android": "^8.4.1",
+    "@capacitor/core": "^8.4.1",
+    "@capacitor/ios": "^8.4.1",
     "@prisma/client": "^6.19.3",
     "bcryptjs": "^3.0.3",
     "dotenv": "^16.6.1",
@@ -21,6 +30,7 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.4.1",
     "@tailwindcss/postcss": "^4",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",

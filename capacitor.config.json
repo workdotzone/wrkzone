@@ -1,0 +1,20 @@
+{
+  "appId": "com.wrkzone.app",
+  "appName": "WrkZone",
+  "webDir": "out",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "CapacitorUpdater": {
+      "autoUpdate": true
+    },
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_icon_config_sample",
+      "iconColor": "#FB8500"
+    }
+  },
+  "android": {
+    "minWebViewVersion": 90
+  }
+}

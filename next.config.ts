@@ -1,8 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Export as static for Capacitor/mobile app
+  output: "export",
   // Image optimization for better performance
   images: {
+    unoptimized: true, // Required for static export
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
@@ -24,8 +27,9 @@ const nextConfig: NextConfig = {
   // Optimize fonts
   experimental: {
     optimizeCss: true,
-    cssInlining: true,
   },
+  // Trailingslash for mobile app compatibility
+  trailingSlash: false,
 };
 
 export default nextConfig;
