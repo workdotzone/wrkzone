@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch categories for dynamic URLs
   const categories = await prisma.category.findMany({
-    select: { slug: true, updatedAt: true },
+    select: { slug: true },
   });
 
   // Fetch featured ads for dynamic URLs
@@ -57,7 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Dynamic category routes
   const categoryRoutes: MetadataRoute.Sitemap = categories.map((cat) => ({
     url: `https://wrkzone.com/category/${cat.slug}`,
-    lastModified: cat.updatedAt,
+    lastModified: new Date(),
     changeFrequency: "daily" as const,
     priority: 0.8,
   }));

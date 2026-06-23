@@ -37,8 +37,6 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
     nocache: false,
-    "google-site-verification": "your-verification-code",
-    "googlebot": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   },
   // Canonical URL
   metadataBase: new URL("https://wrkzone.com"),

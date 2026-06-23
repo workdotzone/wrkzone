@@ -1,11 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Export as static for Capacitor/mobile app
-  output: "export",
   // Image optimization for better performance
   images: {
-    unoptimized: true, // Required for static export
+    unoptimized: false,
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
@@ -13,8 +11,6 @@ const nextConfig: NextConfig = {
         hostname: "**",
       },
     ],
-    sizes: [320, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
   },
   // Enable compression
   compress: true,
