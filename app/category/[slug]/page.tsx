@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import AdCard from "@/components/AdCard";
 import SearchBar from "@/components/SearchBar";
 import Link from "next/link";
-import { Metadata as NextMetadata } from "next";
 
 export const dynamic = "force-dynamic";
 
@@ -13,66 +12,77 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}): Promise<NextMetadata> {
-  const { slug } = await params;
+}): Promise<Metadata> {
+  try {
+    const { slug } = await params;
 
-  const category = await prisma.category.findUnique({
-    where: { slug },
-    include: { _count: { select: { ads: true } } },
-  });
+    const category = await prisma.category.findUnique({
+      where: { slug },
+    });
 
-  if (!category) {
+    if (!category) {
+      return {
+        title: "Category Not Found | WrkZone",
+        description: "The category you're looking for doesn't exist.",
+      };
+    }
+
+    // Get ad count separately to avoid query complexity
+    const adCount = await prisma.ad.count({
+      where: { categoryId: category.id, status: "APPROVED" },
+    });
+
+    const categoryName = category.name;
+    const url = `https://wrkzone.com/category/${slug}`;
+
+    // Generate SEO-optimized title and description for "Service Near Me" ranking
+    const title = `${categoryName} Near Me | Top ${categoryName} Services | WrkZone`;
+    const description = `Find trusted ${categoryName} professionals near you on WrkZone. ${adCount}+ verified ${categoryName} service providers ready to help. Get instant quotes.`;
+    const keywords = `${categoryName} near me, ${categoryName} services, best ${categoryName}, ${categoryName} professionals, hire ${categoryName}`;
+
     return {
-      title: "Category Not Found | WrkZone",
-      description: "The category you're looking for doesn't exist.",
+      title,
+      description,
+      keywords,
+      alternates: {
+        canonical: url,
+      },
+      robots: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+      openGraph: {
+        type: "website",
+        locale: "en_IN",
+        url,
+        title: `${categoryName} Near Me | ${adCount}+ Services on WrkZone`,
+        description: `Hire verified ${categoryName} professionals. Same-day service available.`,
+        siteName: "WrkZone",
+        images: [
+          {
+            url: `https://wrkzone.com/og-image.jpg`,
+            width: 1200,
+            height: 630,
+            alt: categoryName,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: `${categoryName} Near Me - WrkZone`,
+        description: `Find ${categoryName} services near you on WrkZone.`,
+      },
+    };
+  } catch (error) {
+    console.error("Error generating metadata:", error);
+    return {
+      title: "WrkZone",
+      description: "Find local services near you",
     };
   }
-
-  const categoryName = category.name;
-  const adCount = category._count.ads;
-
-  // Generate SEO-optimized title and description for "Service Near Me" ranking
-  const title = `${categoryName} Near Me | Top ${categoryName} Services | WrkZone`;
-  const description = `Find trusted ${categoryName} professionals near you on WrkZone. ${adCount}+ verified ${categoryName} service providers ready to help. Get instant quotes.`;
-  const keywords = `${categoryName} near me, ${categoryName} services, best ${categoryName}, ${categoryName} professionals, hire ${categoryName}`;
-  const url = `https://wrkzone.com/category/${slug}`;
-
-  return {
-    title,
-    description,
-    keywords,
-    alternates: {
-      canonical: url,
-    },
-    robots: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-    openGraph: {
-      type: "website",
-      locale: "en_IN",
-      url,
-      title: `${categoryName} Near Me | ${adCount}+ Services on WrkZone`,
-      description: `Hire verified ${categoryName} professionals. Same-day service available.`,
-      siteName: "WrkZone",
-      images: [
-        {
-          url: `https://wrkzone.com/og-image.jpg`,
-          width: 1200,
-          height: 630,
-          alt: categoryName,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${categoryName} Near Me - WrkZone`,
-      description: `Find ${categoryName} services near you on WrkZone.`,
-    },
-  };
 }
 
 export default async function CategoryPage({
