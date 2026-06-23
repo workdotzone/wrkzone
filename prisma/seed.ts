@@ -16,6 +16,12 @@ const categories = [
   { name: "Movers & Packers", slug: "movers-packers", icon: "📦", color: "#f97316" },
   { name: "Home Salon", slug: "home-salon", icon: "💇", color: "#f43f5e" },
   { name: "CCTV & Security", slug: "cctv-security", icon: "📹", color: "#64748b" },
+  { name: "Computer Repair", slug: "computer-repair", icon: "💻", color: "#0891b2" },
+  { name: "Mobile Repair", slug: "mobile-repair", icon: "📱", color: "#06b6d4" },
+  { name: "Construction", slug: "construction", icon: "🏗️", color: "#d97706" },
+  { name: "Tuition & Coaching", slug: "tuition-coaching", icon: "📚", color: "#8b5cf6" },
+  { name: "Photography", slug: "photography", icon: "📸", color: "#f43f5e" },
+  { name: "Fitness Trainer", slug: "fitness-trainer", icon: "💪", color: "#ef4444" },
 ];
 
 const sampleAds = [
