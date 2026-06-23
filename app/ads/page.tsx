@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import AdCard from "@/components/AdCard";
 import AdFilters from "@/components/AdFilters";
@@ -5,6 +6,50 @@ import SearchBar from "@/components/SearchBar";
 import { Prisma } from "@prisma/client";
 
 export const dynamic = "force-dynamic";
+
+// Generate dynamic metadata for SEO
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    q?: string;
+    city?: string;
+    category?: string;
+    sort?: string;
+  }>;
+}): Promise<Metadata> {
+  const sp = await searchParams;
+
+  let title = "Browse Local Services | WrkZone";
+  let description =
+    "Find verified professionals in your area. Plumbers, electricians, cleaners, and more services available.";
+
+  if (sp.q) {
+    title = `${sp.q} Services | WrkZone`;
+    description = `Find verified ${sp.q} services near you on WrkZone marketplace.`;
+  }
+  if (sp.city) {
+    title = `Services in ${sp.city} | WrkZone`;
+    description = `Browse local services and verified professionals in ${sp.city}.`;
+  }
+
+  return {
+    title,
+    description,
+    robots: {
+      index: true,
+      follow: true,
+    },
+    openGraph: {
+      type: "website",
+      locale: "en_IN",
+      url: `https://wrkzone.com/ads`,
+      title,
+      description,
+      siteName: "WrkZone",
+    },
+  };
+}
 
 type SearchParams = Promise<{
   q?: string;

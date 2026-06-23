@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import SearchBar from "@/components/SearchBar";
 import AdCard from "@/components/AdCard";
@@ -11,6 +12,48 @@ import BrowseByCategory from "@/components/BrowseByCategory";
 import TopMetroCities from "@/components/TopMetroCities";
 
 export const dynamic = "force-dynamic";
+
+// SEO Metadata for Homepage
+export const metadata: Metadata = {
+  title: "WrkZone — Find Trusted Local Services & Post Free Ads | #1 Marketplace in India",
+  description:
+    "Discover verified plumbers, electricians, cleaners & 100+ local services near you. Post your services free on India's most trusted local services marketplace. No registration required!",
+  keywords: [
+    "local services",
+    "handymen",
+    "plumber near me",
+    "electrician",
+    "pest control",
+    "cleaning services",
+    "classified ads",
+    "service provider",
+    "India",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://wrkzone.com",
+    title: "WrkZone — Find Trusted Local Services & Post Free Ads",
+    description: "India's #1 local services marketplace. Find verified professionals or post your services free!",
+    siteName: "WrkZone",
+    images: [
+      {
+        url: "https://wrkzone.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "WrkZone - Local Services Marketplace",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WrkZone — Find Trusted Local Services",
+    description: "India's leading local services marketplace",
+    creator: "@WrkZone",
+    images: ["https://wrkzone.com/twitter-image.png"],
+  },
+  canonical: "https://wrkzone.com",
+};
 
 export default async function Home() {
   const [categories, featured, banners, stats] = await Promise.all([

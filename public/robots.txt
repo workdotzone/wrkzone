@@ -1,0 +1,26 @@
+# WrkZone robots.txt
+# Allows search engines to crawl all pages
+
+User-agent: *
+Allow: /
+Allow: /ads
+Allow: /api/
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /login
+Disallow: /register
+Disallow: /*.json$
+Disallow: /*?*sort=
+Disallow: /_next/
+Disallow: /api/admin/
+
+# Crawl delay in seconds
+Crawl-delay: 1
+
+# Specific rules for Googlebot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Sitemap location
+Sitemap: https://wrkzone.com/sitemap.xml
